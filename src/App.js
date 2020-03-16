@@ -10,6 +10,7 @@ import Navbar from './components/ui/navbar/Navbar'
 //Page components
 import IndexPage from './components/pages/index/IndexPage'
 import FoodsPage from './components/pages/foods-index/FoodsIndex'
+import DetailsPage from './components/pages/foods-detail/FoodDetails'
 
 // RRD components
 import { Switch, Route } from 'react-router-dom'
@@ -22,7 +23,8 @@ const  App = () => {
 
           <Switch>
               <Route path="/" exact component={IndexPage} />
-              <Route path="/alimentos" exact component={FoodsPage} />
+              <Route path="/alimentos" component={FoodsPage} />
+              <Route path="/detalles" component={DetailsPage} />
           </Switch>
         </>
       )
