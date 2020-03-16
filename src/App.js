@@ -1,8 +1,15 @@
 import React from 'react';
 
-function App() {
+// Styling
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+
+//UI components
+import Navbar from './components/ui/navbar/Navbar'
+
+const  App = () => {
   return (
-    <h1>Hola</h1>
+    <Navbar />
   )
 }
 
