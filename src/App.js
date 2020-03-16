@@ -7,10 +7,25 @@ import './App.css'
 //UI components
 import Navbar from './components/ui/navbar/Navbar'
 
+//Page components
+import IndexPage from './components/pages/index/IndexPage'
+import FoodsPage from './components/pages/foods-index/FoodsIndex'
+
+// RRD components
+import { Switch, Route } from 'react-router-dom'
+
+
 const  App = () => {
-  return (
-    <Navbar />
-  )
+      return (
+        <>
+          <Navbar />
+
+          <Switch>
+              <Route path="/" exact component={IndexPage} />
+              <Route path="/alimentos" exact component={FoodsPage} />
+          </Switch>
+        </>
+      )
 }
 
 export default App;
