@@ -1,29 +1,46 @@
 import React from 'react'
 
-import foodsArray from '../../../foods-info'
-
 import { Container, Row, Col, Tabs, Tab} from 'react-bootstrap'
+
+// import Link from 'react-router-dom'
 
 class FoodDetails extends React.Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
-            food: foodsArray[0]
+            food: undefined
         }
     }
 
+    componentDidMount() {
+
+        const id = this.props.match.params.foodId
+
+        fetch(`http://react-webinar.herokuapp.com/${id}`)
+            .then(response => response.json())
+            .then(foodDetails => this.setState({
+                foods: foodDetails
+            }))
+        console.log(this.state.food)
+    }
+
     render(){
+        console.log(this.state.food)
+        return (
+                <Container>
 
-        
 
-        return (<Container>
+                    {
+                    
+                    this.state.food  ?
+
+                    
                     <Row>
                         <Col md={4}>
                             <h1>{this.state.food.name}</h1>
-                            <img className="food-detail-img" src={`/img/${this.state.food.img}`} />
+                            {/* <img className="food-detail-img" src={`/img/${this.state.food.img}`} /> */}
                         </Col>
-                        >
                         <Col md={8}>
                             <h2>Especificaciones</h2>
                             <p>{this.state.food}</p>
@@ -47,8 +64,7 @@ class FoodDetails extends React.Component {
                                 <hr/>
                                 <p>{this.state.food.name} procedente de:</p>
                                 <ul>
-                                    {this.state.food.origin.map(country => <li>{country}</li>)}
-                                   
+                                    {this.state.food.origin.map(country => <li key={country}>{country}</li>)}  
                                 </ul>
                             </Tab>
                             <Tab eventkey="Stock" title="Stock">
@@ -58,8 +74,15 @@ class FoodDetails extends React.Component {
                              
                             </Tab>
                         </Tabs>
+                        {/* <Link className="bt btn-sm btn-outline-dark" to="/">Volver</Link> */}
                         </Col>
                     </Row>
+
+                    :
+
+                    <p>Cargando...</p>
+     
+                    }
                 </Container>
         )
     }
